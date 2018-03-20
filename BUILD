@@ -3,7 +3,7 @@ load("@io_bazel_rules_kotlin//kotlin:kotlin.bzl", "kt_jvm_library")
 kt_jvm_library(
     name = "code",
     srcs = glob(["src/main/kotlin/**/*.kt"]),
-    deps = ["@sparkjava//:compile"],
+    deps = ["@appdeps//:compile"],
 )
 
 java_binary(

@@ -1,4 +1,4 @@
-<web-app>
+<web-app id="webapp-id">
     <filter>
         <filter-name>SparkFilter</filter-name>
         <filter-class>spark.servlet.SparkFilter</filter-class>
@@ -11,4 +11,11 @@
         <filter-name>SparkFilter</filter-name>
         <url-pattern>/*</url-pattern>
     </filter-mapping>
+    <resource-ref>
+        <res-ref-name>testds</res-ref-name>
+        <res-type>javax.sql.DataSource</res-type>
+        <res-auth>Container</res-auth>
+        <res-sharing-scope>Shareable</res-sharing-scope>
+        <mapped-name>testds</mapped-name>
+    </resource-ref>
 </web-app>

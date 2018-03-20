@@ -1,0 +1,5 @@
+<web-bnd>
+    <!--
+    <resource-ref name="testds" binding-name="testds"/>
+    -->
+</web-bnd>

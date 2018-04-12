@@ -12,6 +12,8 @@ import spark.servlet.SparkApplication
 import javax.naming.InitialContext
 import javax.naming.NamingException
 import javax.sql.DataSource
+import javax.jms.Queue
+import javax.jms.ConnectionFactory
 
 class Application : SparkApplication {
     val log: Logger = getLogger(Application::class.java)
@@ -38,7 +40,28 @@ class Application : SparkApplication {
     }
 
     override fun init() {
-        get("/hello", { _: Request, _: Response ->
+        get("/hello") { _, _ -> "Hello there!" }
+
+        get("/mq") { req, res ->
+            try {
+                log.info("Looking up jms queue via JNDI...")
+                val ic = InitialContext()
+                val queue = ic.lookup("java:comp/env/JndiTestQueue") as Queue
+                val cf = ic.lookup("java:comp/env/JndiConnectionFactory") as ConnectionFactory
+                log.info("queue: $queue, ${queue::class.java}")
+                log.info("cf: $cf, ${cf::class.java}")
+                //com.ibm.ws.sib.api.jms.impl.JmsQueueImpl
+                val context = cf.createContext()
+                context.createProducer().send(queue, "msg-sent-to-queue")
+                val msg = context.createConsumer(queue).receive()
+                "${msg.jmsTimestamp}: ${msg.getBody(String::class.java)}"
+            } catch (e: Exception) {
+                log.error("Unable to connect to MQ", e)
+                "Error $e"
+            }
+        }
+
+        get("/database", { _: Request, _: Response ->
             try {
                 log.debug("DataSource: $ds")
 

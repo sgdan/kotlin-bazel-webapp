@@ -18,4 +18,18 @@
         <res-sharing-scope>Shareable</res-sharing-scope>
         <mapped-name>testds</mapped-name>
     </resource-ref>
+    <resource-ref>
+        <res-ref-name>JndiTestQueue</res-ref-name>
+        <res-type>javax.jms.Queue</res-type>
+        <res-auth>Container</res-auth>
+        <res-sharing-scope>Shareable</res-sharing-scope>
+        <mapped-name>JndiTestQueue</mapped-name>
+    </resource-ref>
+    <resource-ref>
+        <res-ref-name>JndiConnectionFactory</res-ref-name>
+        <res-type>javax.jms.ConnectionFactory</res-type>
+        <res-auth>Container</res-auth>
+        <res-sharing-scope>Shareable</res-sharing-scope>
+        <mapped-name>JndiConnectionFactory</mapped-name>
+    </resource-ref>
 </web-app>

@@ -1,3 +1,5 @@
 <web-bnd>
     <resource-ref name="testds" binding-name="testds"/>
+    <resource-ref name="JndiTestQueue" binding-name="JndiTestQueue"/>
+    <resource-ref name="JndiConnectionFactory" binding-name="JndiConnectionFactory"/>
 </web-bnd>
